@@ -1,8 +1,8 @@
 "use client";
 
 import Cookies from "universal-cookie";
-import { logout } from "../api/logout";
 import { makeNotification } from "../Utils/make-notification";
+import { logout } from "../api/auth";
 
 const useHandleLogoutSubmit = () => {
     const cookie = new Cookies();

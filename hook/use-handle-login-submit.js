@@ -1,5 +1,5 @@
 "use client"
-import { login } from "../api/login";
+import { login } from "../api/auth";
 import { makeNotification } from "../Utils/make-notification";
 import { setCookie } from "../Utils/set-cookie";
 

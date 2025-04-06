@@ -1,5 +1,5 @@
+import { getBookByStudentDetails } from '../../../api/book-by-student';
 import Reports from '../../../components/Reports/Reports'
-import { getBookByStudentDetails } from '../../../api/book-by-student-details';
 import { getCookie } from '../../../Utils/get-cookie-server';
 
 export const metadata = {

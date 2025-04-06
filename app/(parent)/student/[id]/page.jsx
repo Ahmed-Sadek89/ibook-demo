@@ -1,4 +1,4 @@
-import { getBookByStudentId } from "../../../../api/book-by-student-id";
+import { getBookByStudentId } from "../../../../api/book-by-student";
 import { getLevels } from "../../../../api/levels";
 import { getSemister } from "../../../../api/semister";
 import { getStudentCountry } from "../../../../api/student-country";
