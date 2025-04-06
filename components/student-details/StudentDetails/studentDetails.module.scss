@@ -1,0 +1,82 @@
+@use "../../../styles/mixins.scss" as mixin;
+
+@keyframes show {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+.studentDetails {
+  animation: show 0.5s forwards;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  .user {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    h3 {
+      font-weight: 600;
+      opacity: 0.9;
+      font-size: 1.4rem;
+      margin-bottom: 0px;
+    }
+    p {
+      margin: 0;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      background-color: var(--main-color);
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.9rem;
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+    @include mixin.xs {
+      img {
+        width: 80px;
+        height: 80px;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+  .field {
+    label {
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    p {
+      background-color: rgb(248, 248, 248);
+      padding: 10px;
+      margin-bottom: 5px;
+    }
+  }
+}

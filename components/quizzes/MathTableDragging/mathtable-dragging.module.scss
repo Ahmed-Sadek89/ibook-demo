@@ -1,0 +1,187 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.tableDragging {
+  h6 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+  h4 {
+    @include mixins.md {
+      font-size: 18px;
+    }
+  }
+
+  .choices {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background-color: #0303030c;
+    padding: 15px;
+    border-radius: 5px;
+
+    @include mixins.md {
+      flex-wrap: wrap;
+    }
+
+    span {
+      background-color: #fff;
+      width: calc(33.33% - 10px);
+      border-radius: 8px;
+      font-size: 23px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8px;
+      position: relative;
+      cursor: grab;
+
+      @include mixins.md {
+        width: calc(25% - 10px);
+        font-size: 20px;
+      }
+
+      u {
+        text-decoration: none;
+        position: absolute;
+        left: 50%;
+        top: 14px;
+        font-size: 0;
+        display: block;
+        width: 25%;
+        height: 2px;
+        background-color: #000;
+
+        @include mixins.md {
+          top: 12px;
+          width: 20%;
+          height: 1px;
+        }
+      }
+
+      @include mixins.xs {
+        font-size: 16px;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+
+    tr {
+      td,
+      th {
+        background-color: #f9f9f9a9;
+        border: 1px solid #eee;
+        height: 70px;
+        min-width: 70px;
+        font-weight: bold;
+        text-align: center !important;
+        padding: 10px;
+
+        @include mixins.md {
+          padding: 5px;
+          font-size: 13px;
+
+          height: 50px;
+          min-width: 40px;
+        }
+      }
+
+      td {
+        span {
+          font-size: 20px;
+          @include mixins.xs {
+            font-size: 16px;
+          }
+        }
+      }
+
+      img {
+        height: 100%;
+
+        @include mixins.md {
+          height: 36px;
+        }
+      }
+
+      .choice {
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: #000, $alpha: 0.03);
+        border: 1px solid rgba($color: #000, $alpha: 0.03);
+        border-radius: 4px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+          cursor: grab;
+          position: relative;
+          font-size: 23px;
+          font-weight: normal;
+          z-index: 2;
+
+          u {
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            top: 4px;
+            font-size: 0;
+            display: block;
+            width: 50%;
+            height: 2px;
+            background-color: #000;
+          }
+
+          @include mixins.xs {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

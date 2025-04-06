@@ -1,0 +1,204 @@
+@use "../../../styles/mixins" as mixin;
+@use "../../../styles/extends";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999 !important;
+  animation: showModal 0.2s forwards ease-in-out 1;
+  @keyframes showModal {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .area {
+    background-color: #fff;
+    width: 800px;
+    height: auto;
+    max-height: 90%;
+    position: relative;
+    animation: show 0.3s forwards ease-in-out 1;
+    @keyframes show {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .area__wrapper {
+      max-height: 90vh;
+      padding: 30px 30px 0;
+      overflow: auto;
+      @include mixin.xs {
+        padding: 30px 20px 0 0;
+      }
+    }
+    @include mixin.lg {
+      width: 700px;
+    }
+    @include mixin.md {
+      width: 700px;
+    }
+    @include mixin.sm {
+      width: 550px;
+    }
+    @include mixin.xs {
+      width: 95%;
+    }
+    .close {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 35px;
+      height: 35px;
+      border-radius: 0%;
+      cursor: pointer;
+      background-color: #000;
+      border: 1px solid #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease-in-out !important;
+      @include mixin.sm {
+        right: -15px;
+      }
+      @include mixin.xs {
+        right: -10px;
+      }
+      &:hover {
+        transform: rotate(90deg);
+      }
+      &.ar {
+        right: unset;
+        left: -15px;
+        @include mixin.xs {
+          left: 0px;
+        }
+      }
+    }
+
+    .area__wrapper {
+      &.arabic {
+        direction: rtl !important;
+        text-align: right !important;
+        * {
+          direction: rtl !important;
+          text-align: right !important;
+        }
+      }
+      &.english {
+        direction: ltr !important;
+        text-align: left !important;
+        * {
+          direction: ltr !important;
+          text-align: left !important;
+        }
+      }
+      .title {
+        display: grid;
+        place-items: center;
+        h4 {
+        }
+      }
+    }
+    .studentForm {
+      padding: 20px;
+      background-color: #fff;
+      margin-top: 10px;
+      h3 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .field {
+        label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+          font-size: 0.85rem;
+        }
+        input,
+        textarea {
+          width: 100%;
+          border: 1px solid #ccc;
+          outline: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          &.error {
+            border-color: var(--error-alert) !important;
+          }
+        }
+        span {
+          color: var(--error-alert);
+          font-size: 0.9rem;
+        }
+        textarea {
+          height: 150px;
+          resize: none;
+        }
+      }
+      .specialField {
+        label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+          font-size: 0.85rem;
+        }
+        div {
+          width: 100%;
+          margin: 0;
+          div {
+            padding: 0;
+            height: 45px;
+            width: 100%;
+          }
+        }
+        fieldset {
+          border-color: #ccc;
+        }
+        button {
+          outline: none;
+        }
+        input {
+          padding: 10px;
+          width: 1500%;
+          &.error {
+            border-color: var(--error-alert) !important;
+          }
+        }
+        span {
+          color: var(--error-alert);
+          font-size: 0.9rem;
+        }
+      }
+      .btn {
+        display: flex;
+        justify-content: center;
+        button {
+          width: 200px;
+          margin: 20px auto 10px;
+          background-color: var(--main-color);
+          color: #fff;
+          padding: 10px 20px;
+          border-radius: 10px;
+          border: 1px solid var(--main-color);
+          outline: none;
+          &:hover {
+            filter: brightness(0.9);
+          }
+        }
+      }
+    }
+  }
+}

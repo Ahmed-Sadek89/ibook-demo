@@ -1,0 +1,98 @@
+@use '../../../styles/mixins.scss' as mixins;
+
+.multipleChoice {
+  &.animation {
+    animation: show 1s forwards;
+  }
+  @keyframes show {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  h6 {
+    font-size: 1.2rem;
+    text-align: center !important;
+    margin-bottom: 1.5rem;
+    span {
+      margin-right: 10px;
+    }
+  }
+  .headH6 {
+    font-weight: 600;
+  }
+  
+  .answers {
+    margin-top: 15px;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgb(236, 236, 236);
+    padding: 10px 20px;
+    border-radius: 5px;
+    @include mixins.sm {
+      display: block;
+    }
+    //next
+    p {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px 10px;
+      span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .num {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(238, 238, 238);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        margin: 0 10px;
+      }
+    }
+    .ansImage {
+      width: 100px;
+      height: 90px;
+      display: block;
+      @include mixins.xs {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 30px;
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      svg {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

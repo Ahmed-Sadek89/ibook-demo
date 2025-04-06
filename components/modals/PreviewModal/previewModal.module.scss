@@ -1,0 +1,139 @@
+// IMPORTING GLOBAL VARIABLES AND MIXINS
+@use "../../../styles/mixins" as mixins;
+@use "../../../styles/extends";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999 !important;
+  animation: showModal 0.2s forwards ease-in-out 1;
+  @keyframes showModal {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .area {
+    background-color: transparent;
+    width: 800px;
+    height: auto;
+    max-height: 90%;
+    position: relative;
+    animation: show 0.3s forwards ease-in-out 1;
+    @keyframes show {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .area__wrapper {
+      max-height: 90vh;
+      padding: 30px;
+      overflow-y: auto;
+    }
+    @include mixins.lg {
+      width: 700px;
+    }
+    @include mixins.md {
+      width: 700px;
+    }
+    @include mixins.sm {
+      width: 500px;
+    }
+    @include mixins.xs {
+      width: 100%;
+    }
+    .close {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: #000;
+      border: 1px solid #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease-in-out !important;
+      @include mixins.sm {
+        right: -40px;
+      }
+      @include mixins.xs {
+        right: 20px;
+      }
+      &:hover {
+        background-color: var(--book-color);
+        border: 1px solid var(--book-color);
+      }
+      &.ar {
+        right: unset;
+        left: -15px;
+        @include mixins.xs {
+          left: 0px;
+        }
+      }
+    }
+
+    .area__content {
+      &.arabic {
+        direction: rtl !important;
+        text-align: right !important;
+        * {
+          direction: rtl !important;
+          text-align: right !important;
+        }
+      }
+      &.english {
+        direction: ltr !important;
+        text-align: left !important;
+        * {
+          direction: ltr !important;
+          text-align: left !important;
+        }
+      }
+      img {
+        width: 100%;
+      }
+      iframe {
+        width: 100%;
+        height: 450px;
+
+        @include mixins.sm {
+          width: 500px;
+          height: 350px;
+        }
+
+        @include mixins.xs {
+          width: 100%;
+          height: 200px;
+        }
+      }
+
+      video {
+        @include mixins.sm {
+          width: 500px;
+          height: 350px;
+        }
+
+        @include mixins.xs {
+          width: 100%;
+          height: 200px !important;
+        }
+      }
+    }
+  }
+}

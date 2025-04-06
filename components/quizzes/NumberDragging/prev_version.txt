@@ -1,0 +1,173 @@
+import { useState, useMemo } from "react";
+//= Components
+import VideoSection from "./../../VideoSection/VideoSection";
+import AudioSection from "../../AudioSection/AudioSection";
+// axios
+import { apiClient } from '../../../Utils/axios';
+;
+
+import Cookies from "universal-cookie";
+//== Component Logic
+import useLogic from './logic';
+//== Styles
+import cls from './numberDragging.module.scss';
+
+const cookie = new Cookies();
+
+const NumberDragging = ({
+  question,
+  setOpenQuizModal,
+  attemptId,
+  questionNum,
+  setQuestionNum,
+  questionsNum,
+  direction,
+  setOpenPreview,
+  setLoading,
+  setResults,
+  setOpenSuccess,
+}) => {
+  const { draggableContainer, dragStart, dragEnd, dragOver, drop, touchStart, touchMoving, touchEnd, rendered, studentAnswer } = useLogic();
+
+  const [changing, setChanging] = useState(false);
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
+
+  const shuffleArray = (array) => {
+    const shuffledArray = [...array];
+    let currentIndex = shuffledArray.length;
+    while (currentIndex !== 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      // Swap current element with a random element
+      [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [
+        shuffledArray[randomIndex],
+        shuffledArray[currentIndex],
+      ];
+    }
+    return shuffledArray;
+  }
+
+  useMemo(() => {
+    setShuffledAnswers(shuffleArray(question.answers));
+  }, [])
+
+  const submit = async () => {
+    const orderedAnswer = studentAnswer
+      .sort((a, b) => Object.keys(a)[0] - Object.keys(b)[0])
+      .map(obj => Object.values(obj)[0]);
+    if (Object.values(studentAnswer).length) {
+      setLoading(true);
+      const data = {
+        quiz_attempt_id: attemptId,
+        question_id: question.id,
+        given_answer: orderedAnswer
+      };
+      const response = await apiClient
+        .post(`/crm/students/quiz/answer_question`, data, {
+          headers: {
+            Authorization: `Bearer ${cookie.get("ibook-auth")}`,
+          },
+        })
+        .catch((err) => console.log(err));
+      if (!response) return;
+      setLoading(false);
+      setResults((prev) => [...prev, response.data.data.is_correct]);
+      if (questionsNum === questionNum) {
+        setOpenSuccess(true);
+      } else {
+        setQuestionNum((questionNum += 1));
+        setChanging(true);
+        setTimeout(() => {
+          setChanging(false);
+        }, 1000);
+      }
+    }
+  };
+
+  if (!rendered) return null;
+  return (
+    <div className={cls.numberDragging}>
+      <div className={`stepper ${direction === "rtl" ? "arabic" : "english"}`}>
+        <div className="step">
+          <p>{questionNum}</p>
+          {direction === "rtl" ? (
+            <span>السؤال الحالي</span>
+          ) : (
+            <span>Current Question</span>
+          )}
+        </div>
+
+        <div className="lastStep">
+          <p>{questionsNum}</p>
+          {direction === "rtl" ? (
+            <span>عدد الاسئلة</span>
+          ) : (
+            <span>Questions Number</span>
+          )}
+        </div>
+      </div>
+      <h6>{question?.title}</h6>
+      <div className="quizHelpers">
+        {question?.question_video_link && (
+          <div className={cls.videoSection}>
+            <VideoSection
+              video={question?.question_video_link}
+              openModal={setOpenPreview}
+              data={false}
+            />
+          </div>
+        )}
+
+        {question?.question_audio && (
+          <div className={cls.audioSection}>
+            <AudioSection audio={question?.question_audio} data={false} />
+          </div>
+        )}
+      </div>
+
+      <div className={cls.images} ref={draggableContainer}>
+        {shuffledAnswers.map((answer, idx) => (
+          <div
+            key={idx}
+            draggable={true}
+            onDragStart={(e) => dragStart(e)}
+            onDragEnd={(e) => dragEnd(e, question.answers.findIndex((a) => a.id === answer.id))}
+            onTouchStart={(e) => touchStart(e)}
+            onTouchMove={(e) => touchMoving(e)}
+            onTouchEnd={(e) => touchEnd(e)}
+          >
+            {/* <span> */}
+            {answer.title}
+            {/* </span> */}
+          </div>
+        ))}
+      </div>
+      <div className={cls.items} id="number_dragging_items">
+        {question.answers.map((answer, idx) => (
+          <div className={cls.item} key={idx}>
+            <img src={answer.answer_img} alt={answer.title} className={cls.image} />
+            <div id={`number_dragging_${idx}`} className={cls.choice} onDragOver={(e) => dragOver(e)} onDrop={(e) => drop(e)}></div>
+          </div>
+        ))}
+      </div>
+      <div className={cls.btn}>
+        {questionsNum === questionNum ? (
+          <button onClick={submit}>
+            {direction === "rtl" ? <span>تأكيد </span> : <span>Submit </span>}
+            <i className="fa-badge-check fa-light"></i>
+          </button>
+        ) : (
+          <button onClick={submit}>
+            {direction === "rtl" ? <span>التالي </span> : <span>Next </span>}
+            <i
+              className={`       ${cls.next
+                } fa-light fa-circle-right`}
+            ></i>
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default NumberDragging;

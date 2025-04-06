@@ -1,0 +1,19 @@
+@use '../../styles/mixins.scss' as mixins;
+
+.imageSection {
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    &.fullImage {
+      max-height: 100% !important;
+    }
+    &.halfImage {
+      max-height: 290px !important;
+    }
+    // object-fit: cover;
+    @include mixins.xs {
+      max-height: 140px;
+    }
+  }
+}

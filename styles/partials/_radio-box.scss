@@ -1,0 +1,98 @@
+/* checkbox settings 👇 */
+
+.ui-radiobox {
+  --primary-color: #fff;
+  --secondary-color: #fff;
+  --primary-hover-color: #4096ff;
+  /* checkbox */
+  --checkbox-diameter: 22px;
+  --checkbox-border-radius: 50%;
+  --checkbox-border-color: #c9c9c9;
+  --checkbox-border-width: 2px;
+  --checkbox-border-style: solid;
+  /* checkmark */
+  --checkmark-size: 1.25;
+}
+
+.ui-radiobox,
+.ui-radiobox *,
+.ui-radiobox *::before,
+.ui-radiobox *::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ui-radiobox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--checkbox-diameter);
+  height: var(--checkbox-diameter);
+  border-radius: var(--checkbox-border-radius);
+  background: #fff;
+  border: var(--checkbox-border-width) var(--checkbox-border-style) var(--checkbox-border-color);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.ui-radiobox::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  opacity: 0.4;
+  -webkit-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+  -o-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+  transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+}
+
+.ui-radiobox::before {
+  top: 50%;
+  left: 50%;
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  opacity: 0;
+  transition:
+    all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),
+    opacity 0.1s;
+}
+
+/* actions */
+
+.ui-radiobox:hover {
+  border-color: var(--main-color);
+}
+
+.ui-radiobox:checked {
+  background: rgba(var(--main-color-rgb), 0.1);
+  border-color: var(--main-color);
+}
+
+.ui-radiobox:checked::before {
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
+  -ms-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
+  transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
+  -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+  -o-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+  transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+}
+
+.ui-radiobox:active:not(:checked)::after {
+  -webkit-transition: none;
+  -o-transition: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  transition: none;
+  opacity: 1;
+}

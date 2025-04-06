@@ -1,0 +1,90 @@
+@use '../../styles/mixins.scss' as mixins;
+
+.videoSection {
+  margin: 10px 0;
+  .mainPart {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    button {
+      width: 70px;
+      height: 70px;
+      padding: 15px;
+      border-radius: 50%;
+      // overflow: hidden;
+      border: none;
+      padding: 0;
+      background-color: transparent;
+      outline: none;
+      padding: 5px;
+      margin: 0 20px;
+      img:not(.playing) {
+        animation: rotate 5s infinite linear;
+        width: 55px;
+        height: 55px;
+      }
+      img.playing {
+        animation: pulse 1.5s infinite;
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+        border-radius: 50%;
+      }
+      &.special {
+        img {
+          z-index: 1;
+        }
+      }
+      @-webkit-keyframes pulse {
+        0% {
+          -webkit-box-shadow: 0 0 0 0 var(--book-color);
+        }
+        70% {
+          -webkit-box-shadow: 0 0 0 10px var(--book-color);
+        }
+        100% {
+          -webkit-box-shadow: 0 0 0 0 var(--book-color);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          -moz-box-shadow: 0 0 0 0 var(--book-color);
+          box-shadow: 0 0 0 0 var(--book-color);
+        }
+        70% {
+          -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+          box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+        }
+        100% {
+          -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+          box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+        }
+      }
+      @include mixins.xs {
+        width: 60px;
+        height: 60px;
+        margin: 0 10px;
+      }
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(10deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      75% {
+        transform: rotate(-10deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
+  img {
+    max-height: 490px;
+  }
+}

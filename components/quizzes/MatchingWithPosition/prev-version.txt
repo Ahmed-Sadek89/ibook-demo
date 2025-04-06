@@ -1,0 +1,151 @@
+"use client";
+//== Modules
+import Cookies from "universal-cookie";
+//== Components
+import VideoSection from "./../../VideoSection/VideoSection";
+import AudioSection from "../../AudioSection/AudioSection";
+import ImageDroppables from './ImageDroppables';
+import ImageDraggables from './ImageDraggables';
+//== Component Logic
+import useLogic from './logic';
+//== Styles
+import cls from './draggingParts.module.scss';
+import { apiClient } from '../../../Utils/axios';
+import { Icon } from "@iconify/react/dist/iconify.js";
+import Image from "next/image";
+
+const cookie = new Cookies();
+
+const MatchingWithPosition = ({
+  question,
+  setOpenQuizModal,
+  attemptId,
+  questionNum,
+  setQuestionNum,
+  questionsNum,
+  direction,
+  setOpenPreview,
+  setLoading,
+  setResults,
+  setOpenSuccess,
+}) => {
+  const { studentAnswer, droppingArea, dragStart, dragEnd, dragOver, dragLeave, drop, touchStart, touchMoving, touchEnd, removeChoice, setChanging } = useLogic();
+
+  const submit = async () => {
+    if (Object.values(studentAnswer).length) {
+      setLoading(true);
+      const data = {
+        quiz_attempt_id: attemptId,
+        question_id: question.id,
+        given_answer: Object.values(studentAnswer)
+      };
+      const response = await apiClient
+        .post(`/crm/students/quiz/answer_question`, data, {
+          headers: {
+            Authorization: `Bearer ${cookie.get("ibook-auth")}`,
+          },
+        })
+        .catch((err) => console.log(err));
+      if (!response) return;
+      setLoading(false);
+      setResults((prev) => [...prev, response.data.data.is_correct]);
+      if (questionsNum === questionNum) {
+        setOpenSuccess(true);
+      } else {
+        setQuestionNum((questionNum += 1));
+        setChanging(true);
+        setTimeout(() => {
+          setChanging(false);
+        }, 1000);
+      }
+    }
+  };
+  return (
+    <>
+      <div className={`stepper ${direction === "rtl" ? "arabic" : "english"}`}>
+        <div className="step">
+          <p>{questionNum}</p>
+          {direction === "rtl" ? (
+            <span>السؤال الحالي</span>
+          ) : (
+            <span>Current Question</span>
+          )}
+        </div>
+        <div className="lastStep">
+          <p>{questionsNum}</p>
+          {direction === "rtl" ? (
+            <span>عدد الاسئلة</span>
+          ) : (
+            <span>Questions Number</span>
+          )}
+        </div>
+      </div>
+      <h2 className={cls.title}>{question?.title}</h2>
+
+      <div className="quizHelpers">
+        {question?.question_video_link && (
+          <div className={cls.videoSection}>
+            <VideoSection
+              video={question?.question_video_link}
+              openModal={setOpenPreview}
+              data={false}
+            />
+          </div>
+        )}
+
+        {question?.question_audio && (
+          <div className={cls.audioSection}>
+            <AudioSection audio={question?.question_audio} data={false} />
+          </div>
+        )}
+      </div>
+
+      <div className={`${cls.content} ${cls[question?.additional_image_direction]}`}>
+        {question?.additional_image ?
+          <Image width={100} height={100} className={cls.additionalImage} src={question?.additional_image} alt="question_image" />
+          :
+          null
+        }
+        <div className={cls.wrapper}>
+          <ImageDraggables
+            droppingArea={droppingArea}
+            dragStart={dragStart}
+            dragEnd={dragEnd}
+            removeChoice={removeChoice}
+            questionDetails={question}
+            touchStart={touchStart}
+            touchMoving={touchMoving}
+            touchEnd={touchEnd}
+          />
+          <ImageDroppables
+            dragOver={dragOver}
+            drop={drop}
+            questionDetails={question}
+          />
+        </div>
+      </div>
+
+      <div className={cls.btn}>
+        <button onClick={submit}>
+          {questionsNum === questionNum
+            ? direction === "rtl"
+              ? "تأكيد"
+              : "Submit"
+            : direction === "rtl"
+              ? "التالي"
+              : "Next"}
+          <Icon
+            className={questionsNum === questionNum ? cls.check : cls.next}
+            icon={
+              questionsNum === questionNum
+                ? "fa:check-circle"
+                : "fa6-regular:circle-right"
+            }
+          />
+        </button>
+      </div>
+    </>
+  )
+}
+
+export default MatchingWithPosition;

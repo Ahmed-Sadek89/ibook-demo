@@ -1,0 +1,124 @@
+@use "../../styles/mixins.scss" as mixins;
+
+.parent {
+  direction: rtl !important;
+  text-align: right !important;
+  background-color: rgb(252, 252, 252);
+  min-height: 100vh;
+ 
+  h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 1.6rem;
+    @include mixins.xs {
+      font-size: 1.3rem;
+    }
+  }
+  .students,
+  .options {
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .options {
+    p {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      span {
+        font-weight: bold;
+      }
+      @include mixins.xs {
+        font-size: 1rem;
+      }
+    }
+    .btns {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 10px;
+      button {
+        padding: 7px 20px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        outline: none;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+        &.add {
+          background-color: var(--main-color);
+          color: #fff;
+          border: 1px solid var(--main-color);
+          &:hover {
+            filter: brightness(0.9);
+          }
+        }
+      }
+    }
+  }
+  .students {
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    h4 {
+      font-size: 1.2rem;
+      text-align: center !important;
+    }
+    .student {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgb(235, 235, 235);
+      padding: 20px 0;
+      &:last-of-type {
+        border-bottom: none;
+      }
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      }
+      .details {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        h5 {
+          @include mixins.xs {
+            font-size: 1.1rem;
+          }
+        }
+        h5,
+        p {
+          margin: 0;
+        }
+        p {
+          opacity: 0.8;
+        }
+      }
+      button {
+        padding: 7px 20px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        outline: none;
+        border-radius: 10px;
+        border: 1px solid var(--main-color);
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: var(--main-color);
+        color: #fff;
+        font-size: 0.9rem;
+        @include mixins.xs {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

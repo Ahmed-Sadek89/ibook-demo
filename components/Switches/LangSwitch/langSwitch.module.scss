@@ -1,0 +1,26 @@
+@use "../../../styles/extends";
+
+.lang {
+  display: flex;
+  align-items: center;
+  margin: 0 0;
+  
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+  h6 {
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  i {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  .dropdown {
+    @extend %dropdown;
+  }
+}

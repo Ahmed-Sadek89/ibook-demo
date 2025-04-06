@@ -1,0 +1,525 @@
+@use "./mixins.scss" as mixin;
+@use "./variables.scss";
+@use "./extends.scss";
+@use "./partials/radio-box";
+@use "./partials/select-box";
+
+// @font-face {
+//   font-family: SofiaSans;
+//   src: url("/fonts/SofiaSans.ttf");
+//   font-display: swap;
+// }
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Tajawal", sans-serif !important;
+  overscroll-behavior-y: contain;
+  overscroll-behavior: contain;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+*:not(i) {
+  box-sizing: border-box;
+  font-family: "Tajawal", sans-serif !important;
+}
+
+::selection {
+  background: #ccc;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #ccc;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 7px;
+  height: 7px;
+  background: #ccc;
+}
+
+.mainPage {
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+
+  @include mixin.md {
+
+    button.prev,
+    button.next {
+      display: none;
+    }
+  }
+
+  button.prev,
+  button.next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid var(--book-color);
+    color: var(--book-color);
+    outline: none;
+
+    &:hover {
+      background-color: var(--book-color);
+      color: #fff;
+    }
+  }
+}
+
+.demoPage,
+.cover {
+  // box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  background-color: #088a19;
+  padding: 10px 0;
+  // border-radius: 5px !important;
+  overflow: hidden;
+  object-fit: contain;
+
+  div {
+    background-image: unset !important;
+  }
+}
+
+.demoPage {
+  border-radius: 5px;
+  // background: url('../public/imgs/back.png');
+  background-color: unset !important;
+  padding: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    // border-radius: 5px;
+  }
+}
+
+.demoPage {
+  &.unit {
+    h2 {
+      color: #fff;
+      background-color: var(--book-color);
+      display: inline-block;
+      padding: 5px 50px;
+      margin: 10px auto;
+      font-size: 1.5rem;
+      border-radius: 5px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(20deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      75% {
+        transform: rotate(-20deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+.demoPage {
+  &.lesson {
+    h2 {
+      text-shadow: 2px 2px 8px var(--book-color);
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.cover {
+  // background-color: #CAAA97;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--book-color);
+
+  img {
+    width: 100%;
+    height: 100% !important;
+    // margin-bottom: 20px;
+    // margin-top: 100px !important;
+  }
+}
+
+.cover h2 {
+  text-align: center;
+  position: relative;
+  top: 45%;
+  color: #000;
+}
+
+.demoPage img {
+  width: 100%;
+}
+
+.demoPage {
+  h2 {
+    background-color: var(--book-color) !important;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+  }
+}
+
+button.wrapper {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  position: relative;
+
+  img {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+.label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  .step,
+  .lastStep {
+    position: relative;
+    margin: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--book-color);
+      color: var(--book-color);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      margin-left: 10px;
+
+      @include mixin.xs {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    }
+
+    span {
+      font-size: 1.1rem;
+      text-align: center !important;
+
+      @include mixin.xs {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .step {
+    p {
+      background-color: #fff;
+      position: relative;
+      z-index: 2;
+    }
+
+    &:after {
+      content: " ";
+      position: absolute;
+      z-index: 1;
+      top: 25%;
+      left: -110%;
+      width: 130px;
+      border: 8px dashed var(--book-color);
+      border-bottom: 0px dashed var(--book-color);
+
+      @include mixin.xs {
+        top: 18%;
+        left: -140%;
+        width: 130px;
+      }
+    }
+  }
+
+  &.english {
+    .step {
+      &:after {
+        left: 85%;
+        width: 150px;
+      }
+    }
+  }
+
+  .lastStep {
+    p {
+      background-color: var(--book-color);
+      color: #fff;
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+.bookPageFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: var(--book-color);
+  z-index: 9;
+
+  .insider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+  }
+
+  .smallReturn {
+    display: none;
+
+    @include mixin.sm {
+      display: block;
+    }
+  }
+
+  input {
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    outline: none;
+    text-align: center !important;
+  }
+
+  span {
+    padding: 0 5px;
+  }
+
+  &:focus {
+    border: 1px solid var(--book-color);
+  }
+
+  button {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+
+    &:hover {
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .link {
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 50px;
+  }
+
+  @include mixin.sm {
+    display: block;
+
+    .link {
+      display: none;
+    }
+  }
+}
+
+.quesImage {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 20px;
+
+  img {
+    max-width: 500px;
+    max-height: 300px;
+
+    @include mixin.xs {
+      max-width: 250px;
+      max-height: 120px;
+    }
+  }
+}
+
+.quizHelpers {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+
+// SWEET ALERT GLOBAL STYLES
+body.swal2-shown {
+  padding: 0 !important;
+}
+
+button.swal2-confirm {
+  background-color: var(--main-color) !important;
+  padding: 10px 20px;
+  border: 1px solid var(--main-color);
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 0 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fff !important;
+    color: var(--main-color);
+  }
+}
+
+button.swal2-cancel {
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  position: relative;
+  color: var(--text-color) !important;
+  top: 3px;
+  border-radius: 20px;
+  font-size: 17px;
+  margin: 0 5px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--main-color);
+  text-decoration: unset !important;
+
+  &:hover {
+    background-color: #fff;
+    color: var(--main-color);
+    text-decoration: underline;
+  }
+}
+
+.MuiMenuItem-root {
+  direction: rtl;
+  align-items: right;
+  min-width: 200px;
+  display: flex;
+  gap: 10px;
+
+  i {
+    font-size: 1.2rem;
+    color: var(--main-color);
+  }
+}
+
+.notFound {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 200px;
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 10px;
+
+    a {
+      color: #fff;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
+
+.textPageContainer {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  text-align: right !important;
+  direction: rtl;
+
+  .content {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 600px;
+  }
+}

@@ -1,0 +1,85 @@
+@use '../../../styles/mixins.scss' as mixins;
+
+.empty {
+  height: 600px;
+}
+
+.matchOneImage {
+  h6 {
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+  }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    .images {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      img {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+
+        @include mixins.xs {
+          width: 70px;
+          height: 70px;
+        }
+      }
+    }
+    canvas {
+      position: absolute;
+    }
+  }
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+
+      @include mixins.xs {
+        margin-top: 30px;
+      }
+    }
+  }
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+
+    @include mixins.xs {
+      margin-top: 80px;
+    }
+
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

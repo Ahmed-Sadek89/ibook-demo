@@ -1,0 +1,185 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.columnsDragging {
+  h6 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+  .questionImg {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    img {
+      max-height: 200px;
+    }
+  }
+
+  .container {
+    max-width: 300px;
+
+    .numbers {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 18px;
+      margin-top: 20px;
+      background-color: #f0efef;
+      padding: 20px;
+      border-radius: 10px;
+      flex-wrap: wrap;
+
+      @include mixins.xs {
+        column-gap: 20px;
+      }
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+    .columns {
+      .lines {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 48px;
+        div {
+          height: 200px;
+          width: 30px;
+          position: relative;
+          display: flex;
+          place-content: center;
+          &:after {
+            content: '';
+            position: absolute;
+            border: 1px solid #ccc;
+            height: 100%;
+          }
+
+          img {
+            width: 20px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+          }
+
+          @include mixins.sm {
+            height: 120px;
+
+          }
+        }
+      }
+      .base {
+        height: 50px;
+        width: 100%;
+        background-color: #f8c291;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 10px;
+
+        span {
+          display: inline-block;
+          text-align: center;
+        }
+      }
+      .boxes {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 15px;
+        margin-top: 10px;
+        .box {
+          width: 50px;
+          height: 50px;
+          border: 1px solid #ccc;
+          display: grid;
+          place-content: center;
+          color: var(--main-color);
+          font-weight: 700;
+          font-size: 30px;
+
+          @include mixins.sm {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+    .bigNumbers {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px;
+      margin-top: 30px;
+      cursor: grab;
+      .draggingItem {
+        color: var(--main-color);
+        font-weight: 700;
+        font-size: 30px;
+      }
+    }
+    .balls {
+      margin-top: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 30px;
+      img {
+        cursor: grab;
+        @include mixins.md {
+          max-height: 150px;
+        }
+        @include mixins.sm {
+          max-height: 150px;
+        }
+      }
+      @include mixins.md {
+        margin-top: 20px;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      @include mixins.xs {
+        margin-top: 20px;
+        justify-content: center;
+        gap: 30px;
+      }
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@use '../../styles/mixins.scss' as mixins;
+
+.adverSection {
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  left: 20px;
+  top: 28%;
+  z-index: 9999;
+  img {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+  @include mixins.xl {
+    height: 100px;
+    width: 100px;
+  }
+  @include mixins.lg {
+    height: 80px;
+    width: 80px;
+    left: 47%;
+    top: 10px;
+  }
+  @include mixins.md {
+    left: 45%;
+  }
+  @include mixins.sm {
+    left: 45%;
+    top: 10px;
+  }
+  @include mixins.xs {
+    left: 40%;
+  }
+}

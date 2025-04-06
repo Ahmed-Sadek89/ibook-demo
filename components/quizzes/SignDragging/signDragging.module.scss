@@ -1,0 +1,81 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.signDragging {
+  h6 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    img {
+      width: 40px;
+      cursor: pointer;
+    }
+  }
+  .items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: 40%;
+      font-size: 1.5rem;
+      font-weight: 700;
+      .number {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--main-color);
+        background-color: #fff;
+        cursor: pointer;
+        img {
+          width: 40px;
+        }
+      }
+
+      @include mixins.xs {
+        width: 100%;
+      }
+    }
+  }
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,184 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.coveredNumberDragging {
+  h6 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+
+    span {
+      cursor: pointer;
+      img {
+        margin: 0 10px;
+        width: 40px;
+        z-index: 9;
+
+        @include mixins.xs {
+          width: 30px;
+        }
+      }
+    }
+  }
+
+  .circles {
+    img {
+      display: none;
+      &:first-of-type {
+        display: inline-block;
+      }
+    }
+  }
+
+  .columns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    @include mixins.sm {
+      gap: 5px;
+    }
+
+    .column {
+      border: 1px solid #262626;
+      border-radius: 4px;
+      flex: 1;
+      overflow: hidden;
+
+      &:nth-of-type(2) {
+        p {
+          @include mixins.sm {
+            height: 35px;
+            padding: 10px 0;
+            font-size: 10px;
+          }
+        }
+      }
+
+      p {
+        background-color: #d0d000;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+
+        @include mixins.sm {
+          height: 35px;
+          font-size: 12px;
+        }
+      }
+
+      .answers {
+        padding: 5px 15px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 25%;
+
+        @include mixins.sm {
+          padding: 5px 15px;
+        }
+
+        @include mixins.xs {
+          padding: 5px 5px;
+        }
+
+        .number {
+          font-size: 24px;
+          letter-spacing: 5px;
+          // position: relative;
+
+          @include mixins.sm {
+            font-size: 16px;
+          }
+
+          .numberInside {
+            position: absolute;
+          }
+
+          img {
+            width: 32px;
+            object-fit: contain;
+            position: relative;
+            left: -4px;
+            transform: rotate(10deg);
+            opacity: 0.7;
+
+            @include mixins.sm {
+              width: 24px;
+            }
+          }
+
+          &.numberAnswer {
+            &.droppedFromDrag {
+              position: relative;
+              img {
+                top: 0px;
+                left: -17px;
+                z-index: 9;
+              }
+            }
+            &.dropped {
+              position: relative;
+              img {
+                position: absolute !important;
+                top: 0px;
+                left: -17px;
+                z-index: 9;
+
+                @include mixins.sm {
+                  top: 1px !important;
+                  width: 24px;
+                  left: -13px !important;
+                }
+              }
+            }
+
+            img {
+              width: 35px;
+              object-fit: contain;
+              margin: 0 5px;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

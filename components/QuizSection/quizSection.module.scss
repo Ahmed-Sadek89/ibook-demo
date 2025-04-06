@@ -1,0 +1,46 @@
+.quizSection {
+  button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    position: relative;
+    transition: all 0.1s ease-in-out;
+    img {
+      position: relative;
+      left: 0;
+      top: 0;
+      z-index: -1;
+    }
+    .questionIcon {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      display: none;
+      place-items: center;
+      svg {
+        font-size: 80px;
+        color: rgb(255 64 4 / 30%);
+        animation: show 0.3s forwards;
+      }
+      @keyframes show {
+        0% {
+          transform: scale(0.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
+    &:hover {
+      background-color: rgb(222, 203, 197, 0.3);
+      .questionIcon {
+        display: grid;
+      }
+    }
+  }
+}

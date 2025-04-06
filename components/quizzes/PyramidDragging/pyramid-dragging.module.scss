@@ -1,0 +1,147 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.pyramidDragging {
+  h6 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+  .circles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    span {
+      background-color: #ae030327;
+      width: calc(33.33% - 10px);
+      height: 50px;
+      transform: skew(-20deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      text-align: center;
+      padding-inline: 10px;
+      cursor: grab;
+      transform: skew(20deg);
+      text-decoration: none;
+
+      &:nth-of-type(2) {
+        background-color: #2eae0327;
+      }
+
+      &:nth-of-type(3) {
+        background-color: #0303ae27;
+      }
+
+      &:nth-of-type(4) {
+        background-color: #039aae27;
+      }
+
+      &:nth-of-type(5) {
+        background-color: #ae039727;
+      }
+
+      &:nth-of-type(6) {
+        background-color: #9dae0327;
+      }
+    }
+  }
+
+  .shape {
+    display: flex;
+
+    .items {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+
+      img {
+        width: 100%;
+      }
+
+      .pyramidStep {
+        flex: 1 1 100%;
+        background-color: #4e81bd;
+        margin-bottom: 2px;
+        text-align: center !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 45px;
+
+        span {
+          text-decoration: none;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        @include mixins.xs {
+          font-size: 14px;
+        }
+
+        &:first-of-type {
+          span {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .instruction {
+      width: 30%;
+      max-height: 300px;
+
+      img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

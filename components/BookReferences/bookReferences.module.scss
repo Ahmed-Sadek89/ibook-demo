@@ -1,0 +1,56 @@
+@use '../../styles/mixins.scss' as mixins;
+
+.bookIndex {
+  padding: 10px 20px;
+  h4 {
+    margin-bottom: 15px;
+    margin-top: 0px;
+    text-align: center !important;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    border-radius: 5px;
+    @include mixins.xs {
+      font-size: 1rem;
+      padding: 5px 0;
+    }
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+      cursor: pointer;
+      opacity: 0.9;
+      font-size: 0.85rem;
+      p {
+        margin: 0 !important;
+      }
+      span {
+        display: flex;
+        align-items: center;
+        i {
+          font-size: 0.8rem;
+        }
+      }
+      span:last-of-type {
+        padding: 0 10px;
+      }
+      a {
+        color: unset;
+      }
+      &:hover {
+        // text-decoration: underline;
+        color: var(--main-color);
+      }
+      @include mixins.xs {
+        font-size: 0.7rem;
+        padding: 1px 0;
+      }
+    }
+  }
+}

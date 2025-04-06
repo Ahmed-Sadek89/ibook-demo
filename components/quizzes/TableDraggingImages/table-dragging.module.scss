@@ -1,0 +1,130 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.tableDragging {
+  h6 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+  .choices {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+
+    @include mixins.sm {
+      gap: 5px;
+    }
+
+    img {
+      width: 20%;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: grab;
+      object-fit: contain;
+      border: 1px solid #eee;
+    }
+  }
+
+  .items {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    table {
+      width: calc(50% - 10px);
+      tr {
+        td {
+          border: 1px solid #dbdbdb;
+          width: 50%;
+          height: 100px;
+          font-weight: bold;
+          text-align: center !important;
+          padding: 10px;
+
+          @include mixins.sm {
+            font-weight: normal;
+            font-size: 15px;
+          }
+        }
+
+        &:first-of-type {
+          td,
+          th {
+            height: 40px;
+          }
+        }
+
+        img {
+          width: 100%;
+          height: 100px;
+          object-fit: contain;
+          padding: 0 5px;
+        }
+
+        .choice {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+          font-weight: bold;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            cursor: pointer;
+          }
+
+          span {
+            pointer-events: none;
+            cursor: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

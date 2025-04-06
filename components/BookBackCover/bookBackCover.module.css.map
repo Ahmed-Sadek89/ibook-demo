@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,cADY,CACZ,EAAE,CAAC;EACD,UAAU,EAAE,iBAAiB;EAC7B,UAAU,EAAE,GAAG;EACf,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "bookBackCover.module.scss"
+    ],
+    "names": [],
+    "file": "bookBackCover.module.css"
+}

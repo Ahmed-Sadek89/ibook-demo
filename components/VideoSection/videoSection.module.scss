@@ -1,0 +1,58 @@
+@use '../../styles/mixins.scss' as mixins;
+
+.videoSection {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px 0;
+  span {
+    @include mixins.xs {
+      font-size: 0.7rem;
+    }
+  }
+  button {
+    width: 80px;
+    height: 50px;
+    // overflow: hidden;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+    padding: 5px;
+    margin: 0 20px;
+    img {
+      animation: rotate 5s infinite linear;
+      object-fit: contain;
+      width: 90px;
+      height: 60px;
+      z-index: 1;
+    }
+    &.special {
+      img {
+        z-index: 1;
+      }
+    }
+    @include mixins.xs {
+      width: 55px;
+      height: 50px;
+      margin: 0 10px;
+    }
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(10deg);
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+    75% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@use "../../styles/mixins.scss" as mixins;
+
+.levels {
+  direction: rtl !important;
+  text-align: right !important;
+
+  .wrapper {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    @include mixins.xs {
+      height: auto;
+    }
+
+    .one:nth-child(even) {
+      background-color: var(--forth-color);
+    }
+
+    .one:nth-child(odd) {
+      background-color: var(--first-color);
+    }
+
+    .one {
+      padding: 20px;
+      margin-top: 30px;
+      color: #fff;
+      flex: 0 0 calc(25% - 20px);
+      text-align: center !important;
+      border-radius: 40px;
+      height: 200px;
+      width: 100%;
+      display: grid;
+      place-items: center;
+      background-color: #fff;
+      cursor: pointer;
+      
+      @include mixins.md {
+        flex: 0 0 calc(50% - 20px);
+      }
+
+      @include mixins.sm {
+        flex: 0 0 calc(50% - 20px);
+      }
+
+      @include mixins.xs {
+        flex: 0 0 calc(100% - 20px);
+        margin-top: 0px;
+      }
+    }
+  }
+}

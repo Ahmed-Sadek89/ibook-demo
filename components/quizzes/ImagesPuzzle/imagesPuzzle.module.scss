@@ -1,0 +1,89 @@
+.imagesPuzzle {
+  border: 2px solid var(--main-color);
+  padding: 20px;
+  h2 {
+    margin-bottom: 20px;
+    span {
+      cursor: pointer;
+      img {
+        width: 40px;
+        transform: translateY(15px);
+        margin: 0 10px;
+      }
+    }
+  }
+  .images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+    img {
+      width: 120px;
+      height: 100px;
+      cursor: pointer;
+    }
+  }
+  .items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 100px;
+    gap: 3px;
+    .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 3rem;
+      width: 200px;
+      height: 200px;
+      background-color: #f8f8f8;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+@use '../../../styles/mixins.scss' as mixins;
+
+.numberDragging {
+  h6 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    min-height: 80px;
+    .image_item {
+      cursor: pointer;
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-content: center;
+      background: url('/imgs/numberBack.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      font-size: 2rem;
+      font-weight: 700;
+      transform: translateY(-5px);
+      color: red;
+
+      @include mixins.lg {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+
+      @include mixins.xs {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        margin-top: 12px;
+      }
+    }
+
+    @include mixins.xs {
+      gap: 20px;
+    }
+  }
+  .items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      .image {
+        border: 2px solid var(--main-color);
+        padding: 20px;
+        width: 180px;
+        height: 120px;
+
+        @include mixins.xs {
+          padding: 10px;
+          width: 120px;
+          height: 80px;
+        }
+      }
+      .choice {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid var(--main-color);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: relative;
+        div {
+          cursor: pointer;
+          width: 70px;
+          height: 70px;
+          display: grid;
+          place-content: center;
+          background: url('/imgs/numberBack.png');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          position: absolute;
+          font-size: 1.7rem;
+          font-weight: 700;
+          transform: translateY(-3px);
+          color: red;
+          @include mixins.xs {
+            font-size: 1.2rem;
+          }
+        }
+
+        @include mixins.xs {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      @include mixins.xs {
+        gap: 5px;
+      }
+    }
+
+    @include mixins.xs {
+      gap: 10px;
+    }
+  }
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+  .btn {
+    text-align: center;
+    margin-top: 50px;
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      i {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+@use '../../../styles/mixins.scss' as mixins;
+
+.imagesBoxesDragging {
+  background: url('/imgs/backo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
+
+  h6 {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    span {
+      cursor: pointer;
+      img {
+        width: 40px;
+        transform: translateY(15px);
+        margin: 0 10px;
+      }
+    }
+  }
+
+  img {
+    max-width: 120px;
+    max-height: 80px;
+    @include mixins.sm {
+      max-width: 60px;
+      max-height: 60px;
+    }
+  }
+}
+
+.dragDropZone {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 50px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: grab;
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+
+    @include mixins.sm {
+      width: 100px;
+      height: 100px;
+    }
+
+    @include mixins.xs {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .itemPlaceholder {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include mixins.xs {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  @include mixins.xs {
+    padding-bottom: 30px;
+    
+  }
+}
+
+.btn {
+  text-align: center;
+  margin-top: 30px;
+
+  button {
+    background-color: var(--book-color);
+    color: #fff;
+    border: 1px solid var(--book-color);
+    padding: 5px 20px;
+    border-radius: 5px;
+    outline: none;
+
+    &:hover {
+      background-color: transparent;
+      color: var(--book-color);
+    }
+  }
+}

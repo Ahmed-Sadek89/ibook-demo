@@ -1,0 +1,73 @@
+@use "../../../styles/extends.scss";
+
+.overlay {
+  position: fixed;
+  background-color: transparent;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+}
+.field {
+  position: relative;
+  input {
+    // @extend %input;
+    padding: 12px 15px;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #ccc;
+    &.error {
+      border-color: var(--error-alert) !important;
+    }
+  }
+  svg {
+    position: absolute;
+    top: 30%;
+    left: 15px;
+    opacity: 0.7;
+    font-size: 0.8rem;
+    &.ar {
+      right: unset;
+      left: 15px;
+    }
+  }
+  .field__results {
+    width: 100%;
+    height: auto;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    display: none;
+    max-height: 250px;
+    overflow-y: auto;
+    .field__results_result {
+      padding: 10px 0;
+      .resultInside {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0px 10px;
+        margin-bottom: 5px;
+        img {
+          width: 30px;
+        }
+        p {
+          font-size: 0.9rem;
+          padding: 10px;
+          margin: 0;
+        }
+        &:hover {
+          background-color: var(--hover-color);
+        }
+      }
+    }
+    &.active {
+      display: block;
+    }
+  }
+}

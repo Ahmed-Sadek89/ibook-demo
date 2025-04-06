@@ -1,0 +1,129 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.matching {
+  &.animation {
+    animation: show 1s forwards;
+  }
+  @keyframes show {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  h6 {
+    font-size: 20px;
+  }
+  .wrapper {
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-start;
+    direction: unset !important;
+    text-align: unset !important;
+    p {
+      font-weight: 600;
+      color: #000;
+      background-color: rgb(231, 231, 231);
+      margin-bottom: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      direction: unset !important;
+      text-align: center !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.withImage {
+        background-color: transparent;
+      }
+
+      &.big {
+        min-height: 80px;
+        @include mixins.xs {
+          min-height: 60px;
+        }
+      }
+
+      span {
+        display: block;
+      }
+      img {
+        width: 80px;
+        height: 80px;
+        @include mixins.xs {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      @include mixins.xs {
+        width: 100px;
+        font-size: 0.9rem;
+      }
+    }
+
+    canvas {
+      direction: unset !important;
+      text-align: unset !important;
+    }
+
+    .list {
+      text-align: center !important;
+      // flex: 1;
+      width: 50%;
+      span {
+        padding: 5px 20px;
+        @include mixins.xs {
+          padding: 5px 10px;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .match {
+      text-align: center !important;
+      direction: unset !important;
+      text-align: unset !important;
+      width: auto;
+
+      &.withImage {
+        width: auto;
+      }
+
+      span {
+        padding: 5px 20px;
+        @include mixins.xs {
+          padding: 5px 10px;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: 30px;
+    button {
+      background-color: var(--book-color);
+      color: #fff;
+      border: 1px solid var(--book-color);
+      padding: 5px 20px;
+      border-radius: 5px;
+      outline: none;
+      svg {
+        &.ar {
+          &.next {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover {
+        background-color: transparent;
+        color: var(--book-color);
+      }
+    }
+  }
+}

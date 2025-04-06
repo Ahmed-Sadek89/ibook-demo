@@ -1,0 +1,161 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.similarNumberDragging {
+  background: url('/imgs/backo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 20px;
+
+  h6 {
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+  }
+
+  .images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 40px;
+    img {
+      cursor: pointer;
+    }
+
+    @include mixins.lg {
+      gap: 20px;
+      img {
+        width: 80px;
+        z-index: 9;
+      }
+    }
+
+    @include mixins.md {
+      gap: 20px;
+      img {
+        width: 70px;
+        z-index: 9;
+      }
+    }
+
+    @include mixins.sm {
+      gap: 15px;
+      img {
+        width: 50px;
+        z-index: 9;
+      }
+    }
+
+    @include mixins.xs {
+      gap: 15px;
+      img {
+        width: 50px;
+        z-index: 9;
+      }
+    }
+  }
+
+  .items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+
+    .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 3rem;
+      width: 130px;
+      height: 80px;
+      background-color: var(--main-color);
+      color: #fff;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      img {
+        width: 70px;
+        height: 70px;
+        position: static;
+        z-index: 9;
+      }
+      @include mixins.lg {
+        width: 120px;
+        height: 70px;
+        font-size: 2rem;
+        img {
+          width: 70px;
+          object-fit: contain;
+        }
+      }
+      @include mixins.md {
+        width: 100px;
+        height: 60px;
+        font-size: 1.8rem;
+        img {
+          width: 60px;
+          object-fit: contain;
+        }
+      }
+      @include mixins.sm {
+        width: 80px;
+        height: 50px;
+        font-size: 1.8rem;
+        img {
+          width: 50px;
+          object-fit: contain;
+        }
+      }
+      @include mixins.xs {
+        width: 80px;
+        height: 50px;
+        font-size: 1.8rem;
+        img {
+          width: 50px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  .actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+}
+.btn {
+  text-align: center;
+  margin-top: 50px;
+
+  button {
+    background-color: var(--book-color);
+    color: #fff;
+    border: 1px solid var(--book-color);
+    padding: 5px 20px;
+    border-radius: 5px;
+    outline: none;
+    i {
+      &.ar {
+        &.next {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    &:hover {
+      background-color: transparent;
+      color: var(--book-color);
+    }
+  }
+}

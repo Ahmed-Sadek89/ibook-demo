@@ -1,0 +1,109 @@
+@use '../../../styles/mixins.scss' as mixin;
+
+@keyframes show {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+.quizReports {
+  animation: show 0.5s forwards;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  @include mixin.xs {
+    padding: 20px 0px;
+  }
+  .choosingBook {
+    // box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border: 1px solid rgb(228, 228, 228);
+    margin-bottom: 40px;
+    @include mixin.xs {
+      padding: 0px;
+    }
+    label {
+      font-weight: 600;
+    }
+    @include mixin.sm {
+      padding: 20px 10px;
+    }
+  }
+
+  .reports {
+    // padding: 30px;
+    // border: 1px solid rgb(228, 228, 228);
+    @include mixin.sm {
+      // padding: 20px 10px;
+    }
+
+    .tableReports {
+      overflow-x: scroll;
+      table {
+        min-width: 1000px;
+        border: 1px solid rgb(223, 223, 223);
+        thead {
+          background-color: #ededed;
+          tr {
+            th {
+              font-weight: 600;
+              text-align: center;
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              text-align: center;
+              border-left: 1px solid rgb(228, 228, 228);
+              border-right: 1px solid rgb(228, 228, 228);
+              button {
+                background-color: var(--main-color);
+                color: #fff;
+                padding: 8px 40px;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                &:hover {
+                  filter: brightness(0.9)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .chartsReports {
+      .chartsSection {
+        margin-top: 30px;
+        border: 1px solid rgb(228, 228, 228);
+
+        h5 {
+          background-color: #ededed;
+          padding: 10px 20px;
+          font-size: 1.1rem;
+          font-weight: 600;
+        }
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .notChoosed {
+      h4 {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

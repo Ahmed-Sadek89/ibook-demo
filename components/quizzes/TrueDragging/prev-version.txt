@@ -1,0 +1,168 @@
+import { useState } from "react";
+// axios
+import { apiClient } from '../../../Utils/axios';
+;
+//= Components
+import VideoSection from "./../../VideoSection/VideoSection";
+import AudioSection from "../../AudioSection/AudioSection";
+import Cookies from "universal-cookie";
+//== Component Logic
+import useLogic from './logic';
+//== Styles
+import cls from './trueDragging.module.scss';
+
+const cookie = new Cookies();
+
+const TrueDragging = ({
+  question,
+  setOpenQuizModal,
+  attemptId,
+  questionNum,
+  setQuestionNum,
+  questionsNum,
+  direction,
+  setOpenPreview,
+  setLoading,
+  setResults,
+  setOpenSuccess,
+}) => {
+  const { draggableContainer, dragStart, moving, dragEnd, dragOver, drop, touchStart, touchMoving, touchEnd, studentAnswer } = useLogic();
+
+  const [changing, setChanging] = useState(false);
+
+  const submit = async () => {
+    if (studentAnswer.length) {
+      setLoading(true);
+      let answersArray = []
+      studentAnswer.forEach(ans => {
+        let neededAnswer = question?.answers.find((answer) => ans === answer.answer_img)
+        if (neededAnswer?.id) answersArray.push(neededAnswer?.id)
+      })
+      const data = {
+        quiz_attempt_id: attemptId,
+        question_id: question.id,
+        given_answer: answersArray,
+      };
+
+      const response = await apiClient
+        .post(`/crm/students/quiz/answer_question`, data, {
+          headers: {
+            Authorization: `Bearer ${cookie.get("ibook-auth")}`,
+          },
+        })
+        .catch((err) => console.log(err));
+
+      setLoading(false);
+
+      if (!response?.data?.success) return;
+
+      setResults((prev) => [...prev, response.data.data.is_correct]);
+
+      if (questionsNum === questionNum) {
+        setOpenSuccess(true);
+      } else {
+        setQuestionNum((questionNum += 1));
+        setChanging(true);
+
+        setTimeout(() => {
+          setChanging(false);
+        }, 1000);
+      }
+    }
+  };
+
+  return (
+    <div className={cls.trueDragging} ref={draggableContainer}>
+      <div className={`stepper ${direction === "rtl" ? "arabic" : "english"}`}>
+        <div className="step">
+          <p>{questionNum}</p>
+          {direction === "rtl" ? (
+            <span>السؤال الحالي</span>
+          ) : (
+            <span>Current Question</span>
+          )}
+        </div>
+
+        <div className="lastStep">
+          <p>{questionsNum}</p>
+          {direction === "rtl" ? (
+            <span>عدد الاسئلة</span>
+          ) : (
+            <span>Questions Number</span>
+          )}
+        </div>
+      </div>
+      <h6>
+        {question?.title}
+
+        <span className={cls.checkMarks} id="checkMarks">
+          {question?.answers.map((_, idx) => (
+            <img
+              key={idx}
+              src="/imgs/check-mark.png"
+              alt="check-mark"
+              draggable={true}
+              onDragStart={(e) => dragStart(e)}
+              onDragEnd={(e) => dragEnd(e)}
+              onTouchStart={(e) => touchStart(e)}
+              onTouchMove={(e) => touchMoving(e)}
+              onTouchEnd={(e) => touchEnd(e)}
+            />
+          ))}
+        </span>
+      </h6>
+
+      <div className="quizHelpers">
+        {question?.question_video_link && (
+          <div className={cls.videoSection}>
+            <VideoSection
+              video={question?.question_video_link}
+              openModal={setOpenPreview}
+              data={false}
+            />
+          </div>
+        )}
+
+        {question?.question_audio && (
+          <div className={cls.audioSection}>
+            <AudioSection audio={question?.question_audio} data={false} />
+          </div>
+        )}
+      </div>
+
+      <div className="quesImage">
+        {question?.question_img && !changing && (
+          <img src={question?.question_img} alt="image" />
+        )}
+      </div>
+      <div className={cls.items}>
+        {question?.answers?.map((answer, idx) => (
+          <div className={cls.item} key={idx}>
+            <img src={answer.answer_img} alt={answer.title} />
+            <div
+              className={cls.number}
+              onDragOver={(e) => dragOver(e)}
+              onDrop={(e) => drop(e)}
+            ></div>
+          </div>
+        ))}
+      </div>
+      <div className={cls.btn}>
+        <button onClick={submit}>
+          {direction === "rtl" ? (
+            <span>{questionsNum === questionNum ? "تأكيد" : "التالي"}</span>
+          ) : (
+            <span>{questionsNum === questionNum ? "Submit" : "Next"}</span>
+          )}
+          <i
+            className={`fa-light ${questionsNum === questionNum ? "fa-badge-check" : `fa-circle-right ${cls.next}`
+              }`}
+          ></i>
+        </button>
+
+      </div>
+    </div>
+  )
+}
+
+export default TrueDragging;
