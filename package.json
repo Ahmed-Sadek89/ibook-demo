@@ -58,14 +58,8 @@
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
   "main": "next-i18next.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ahmad-eid97/Flip-Book.git"
-  },
+  "repository": {},
   "author": "ahmad eid",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ahmad-eid97/Flip-Book/issues"
-  },
-  "homepage": "https://github.com/ahmad-eid97/Flip-Book#readme"
+  "license": "ISC"
+  
 }
