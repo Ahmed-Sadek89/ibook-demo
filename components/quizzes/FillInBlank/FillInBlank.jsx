@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { toast } from "react-toastify";
 
-import { replaceReact } from "replace-react";
+// import { replaceReact } from "replace-react";
 
 import VideoSection from "../../VideoSection/VideoSection";
 import AudioSection from "../../AudioSection/AudioSection";
@@ -140,7 +140,7 @@ const FillInBlank = ({
             {" "}
             {questionNum}) {question?.title}
           </h6>
-
+{/* 
           {replaceReact(answer.title, /({dash})/g, (match, key) => (
             <input
               type="text"
@@ -151,7 +151,7 @@ const FillInBlank = ({
                 wrongAnswers[idx] && wrongAnswers[idx][key] ? cls.error : ""
               }
             />
-          ))}
+          ))} */}
 
           <div className={cls.btn}>
             {questionsNum === questionNum ? (
